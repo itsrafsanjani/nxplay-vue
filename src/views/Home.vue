@@ -33,7 +33,6 @@ export default {
             this.popularVideos = res.data.popularVideos
             this.videos = res.data.videos
             this.newVideos = res.data.newVideos
-            console.log(res.data);
           }).catch(err => {
         console.log(err)
       })

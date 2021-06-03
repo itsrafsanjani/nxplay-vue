@@ -6,7 +6,7 @@
         <div class="col-12">
           <div class="footer__content">
             <a href="#" class="footer__logo">
-              <img src="img/logo.svg" alt="">
+              <img src="../assets/logo.svg" alt="logo">
             </a>
 
             <span class="footer__copyright">© 2020 HotFlix<br> Create by <a href="https://themeforest.net/user/dmitryvolkov/portfolio" target="_blank">Dmitry Volkov</a></span>

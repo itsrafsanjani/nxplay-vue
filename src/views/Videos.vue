@@ -27,7 +27,6 @@ export default {
       this.$api.get('videos')
           .then(res => {
             this.videos = res.data.data
-            console.log(res.data.data);
           }).catch(err => {
         console.log(err)
       })

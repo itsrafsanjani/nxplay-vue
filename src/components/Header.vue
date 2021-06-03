@@ -7,7 +7,7 @@
           <div class="header__content">
             <!-- header logo -->
             <router-link to="/" class="header__logo">
-              <img src="img/logo.svg" alt="">
+              <img src="../assets/logo.svg" alt="">
             </router-link>
             <!-- end header logo -->
 
@@ -23,7 +23,7 @@
 <!--                </ul>-->
 <!--              </li>-->
               <li class="header__nav-item">
-                <router-link to="/">Home</router-link>
+                <router-link :to="{ name: 'Home' }" class="header__nav-link">Home</router-link>
               </li>
               <!-- end dropdown -->
 
@@ -40,7 +40,7 @@
               <!-- end dropdown -->
 
               <li class="header__nav-item">
-                <router-link to="/videos/" class="header__nav-link">Videos</router-link>
+                <router-link :to="{ name: 'Videos' }" class="header__nav-link">Videos</router-link>
               </li>
 
               <li class="header__nav-item">
@@ -83,7 +83,7 @@
               </button>
 
               <!-- dropdown -->
-              <div class="dropdown header__lang">
+              <!-- <div class="dropdown header__lang">
                 <a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</a>
 
                 <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuLang">
@@ -91,10 +91,15 @@
                   <li><a href="#">Spanish</a></li>
                   <li><a href="#">Russian</a></li>
                 </ul>
-              </div>
+              </div> -->
               <!-- end dropdown -->
+              <img :src="user.avatar" :alt="user.name" :title="user.name" class="avatar-img" v-if="user">
 
-              <router-link to="/login" class="header__sign-in">
+              <a href="#" @click.prevent="logout" class="header__sign-in" v-if="auth">
+                <i class="icon ion-ios-log-in"></i>
+                <span>sign out</span>
+              </a>
+              <router-link :to="{ name: 'Login' }" class="header__sign-in" v-else>
                 <i class="icon ion-ios-log-in"></i>
                 <span>sign in</span>
               </router-link>
@@ -118,10 +123,36 @@
 
 <script>
 export default {
-name: "Header"
+name: "Header",
+methods: {
+        logout() {
+            this.$siteUrl.post('/logout').then(response => {
+                console.log(response, 'Logged out!');
+
+                this.$store.commit('SET_AUTHENTICATED', false)
+                this.$router.push({name: 'Login'})
+            })
+        }
+    },
+computed: {
+        auth() {
+            return this.$store.getters.getAuthenticated;
+        },
+        user() {
+            return this.$store.getters.getUser;
+        }
+    }
 }
 </script>
 
 <style scoped>
-
+  .is-active {
+    color: #ffd80e;
+  }
+  .avatar-img {
+    border: 2px solid #1eff0e;
+     border-radius: 50%;
+     width: 40px;
+     margin-right: -30px;
+  }
 </style>

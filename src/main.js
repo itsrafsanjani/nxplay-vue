@@ -13,12 +13,15 @@ Vue.use({
             baseURL: 'http://localhost:8000/api/v2/',
             withCredentials: true,
         })
+        
         Vue.prototype.$siteUrl = axios.create({
             baseURL: 'http://localhost:8000/',
             withCredentials: true,
         })
     }
 })
+
+axios.defaults.withCredentials = true;
 
 // check authentication
 let auth = localStorage.getItem('auth');

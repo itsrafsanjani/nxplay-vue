@@ -70,16 +70,13 @@ export default {
     getUserData() {
       this.$api.get('user').then(response => {
         console.log(response.data)
-        // let user = response.data
-        // this.$store.commit('SET_USER', user)
-        // this.$store.commit('SET_AUTHENTICATED', true)
+        let user = response.data
+        this.$store.commit('SET_USER', user)
+        this.$store.commit('SET_AUTHENTICATED', true)
 
-        // localStorage.setItem('auth', true);
+        localStorage.setItem('auth', true);
       })
     }
-  },
-  mounted() {
-    this.getUserData()
   }
 }
 </script>

@@ -115,7 +115,6 @@ export default {
                   }],
                   poster: "https://image.tmdb.org/t/p/w300/" + this.video.poster,
                 }
-            console.log(res.data);
           }).catch(err => {
         console.log(err)
       })
