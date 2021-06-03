@@ -31,8 +31,9 @@ const store = new Vuex.Store({
         }
     },
     actions: {
-        authUser({commit}) {
-            return axios.get('http://localhost:8000/api/v2/user').then((response) => {
+        authUser({ commit }) {
+            let apiUrl = process.env.VUE_APP_API_URL;
+            return axios.get(apiUrl + 'user').then((response) => {
                 commit('SET_AUTHENTICATED', true)
                 commit('SET_USER', response.data)
                 localStorage.setItem('auth', true);

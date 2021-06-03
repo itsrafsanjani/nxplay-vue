@@ -47,29 +47,26 @@ export default {
   data() {
     return {
       loginForm: new Form({
-        email: 'mdrafsanjanirafin@gmail.com',
-        password: 'password'
+        email: '',
+        password: ''
       })
     }
   },
   methods: {
     login() {
       this.$siteUrl.get('sanctum/csrf-cookie')
-          .then(response => {
-            console.log(response.data)
+          .then(() => {
             this.$siteUrl.post('/login', {
               email: this.loginForm.email,
               password: this.loginForm.password,
-            }).then(response => {
+            }).then(() => {
               this.$router.push({name: 'Home'})
-              console.log(response.data)
               this.getUserData()
             })
           });
     },
     getUserData() {
       this.$api.get('user').then(response => {
-        console.log(response.data)
         let user = response.data
         this.$store.commit('SET_USER', user)
         this.$store.commit('SET_AUTHENTICATED', true)

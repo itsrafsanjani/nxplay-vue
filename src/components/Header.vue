@@ -93,7 +93,7 @@
                 </ul>
               </div> -->
               <!-- end dropdown -->
-              <img :src="user.avatar" :alt="user.name" :title="user.name" class="avatar-img" v-if="user">
+              <img :src="user.avatar" :alt="user.name" :title="user.name" class="avatar-img" v-if="auth">
 
               <a href="#" @click.prevent="logout" class="header__sign-in" v-if="auth">
                 <i class="icon ion-ios-log-in"></i>
@@ -126,9 +126,7 @@ export default {
 name: "Header",
 methods: {
         logout() {
-            this.$siteUrl.post('/logout').then(response => {
-                console.log(response, 'Logged out!');
-
+            this.$siteUrl.post('/logout').then(() => {
                 this.$store.commit('SET_AUTHENTICATED', false)
                 this.$router.push({name: 'Login'})
             })
