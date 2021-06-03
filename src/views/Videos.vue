@@ -13,34 +13,32 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
 import Card from "../components/Card";
 export default {
-  name: 'Home',
+  name: 'Videos',
   components: {Card},
   data() {
     return {
-      popularVideos: [],
       videos: [],
-      newVideos: [],
     }
   },
   methods: {
-    getHome() {
-      this.$api.get('home')
+    getVideos() {
+      this.$api.get('videos')
           .then(res => {
-            this.popularVideos = res.data.popularVideos
-            this.videos = res.data.videos
-            this.newVideos = res.data.newVideos
-            console.log(res.data);
+            this.videos = res.data.data
+            console.log(res.data.data);
           }).catch(err => {
         console.log(err)
       })
     }
   },
   created() {
-    this.getHome()
+    this.getVideos()
   }
 }
 </script>
+
+<style scoped>
+
+</style>
